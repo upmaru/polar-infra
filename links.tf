@@ -41,27 +41,27 @@ module "instellar_link_sombrero_scz" {
 
 }
 
-module "instellar_link_blackeye_ydn" {
+module "instellar_link_polaris_dux" {
   source  = "upmaru/bootstrap/instellar//modules/service"
   version = "0.6.3"
 
 
-  channels = ["main", "master"]
+  channels = ["main", "master", "develop"]
   cluster_ids = [
     module.instellar_link_sombrero_scz.cluster_id
   ]
   credential = {
-    host     = module.aws_database_sombrero_cwi.host
-    password = module.aws_database_sombrero_cwi.secret_access_key
-    port     = module.aws_database_sombrero_cwi.port
-    resource = module.aws_database_sombrero_cwi.region
-    username = module.aws_database_sombrero_cwi.access_key_id
+    host     = module.aws_bucket_polaris_wvy.host
+    password = module.aws_bucket_polaris_wvy.secret_access_key
+    port     = module.aws_bucket_polaris_wvy.port
+    resource = module.aws_bucket_polaris_wvy.region
+    username = module.aws_bucket_polaris_wvy.access_key_id
     secure   = true
   }
 
   driver                = "bucket/aws-s3"
-  driver_version        = module.aws_database_sombrero_cwi.version
-  insterra_component_id = 69
+  driver_version        = module.aws_bucket_polaris_wvy.version
+  insterra_component_id = 71
   provider_name         = "aws"
-  slug                  = module.aws_database_sombrero_cwi.identifier
+  slug                  = module.aws_bucket_polaris_wvy.identifier
 }
