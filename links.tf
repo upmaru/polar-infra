@@ -5,7 +5,7 @@ module "instellar_link_sombrero_emg" {
   version = "0.6.3"
 
   certificate = module.aws_database_sombrero_cwi.certificate_url
-  channels    = ["main", "master"]
+  channels    = ["main", "master", "develop"]
   cluster_ids = [
     module.instellar_link_sombrero_scz.cluster_id
   ]
@@ -39,4 +39,29 @@ module "instellar_link_sombrero_scz" {
   provider_name         = "aws"
   region                = var.aws_region
 
+}
+
+module "instellar_link_blackeye_ydn" {
+  source  = "upmaru/bootstrap/instellar//modules/service"
+  version = "0.6.3"
+
+
+  channels = ["main", "master"]
+  cluster_ids = [
+    module.instellar_link_sombrero_scz.cluster_id
+  ]
+  credential = {
+    host     = module.aws_database_sombrero_cwi.host
+    password = module.aws_database_sombrero_cwi.secret_access_key
+    port     = module.aws_database_sombrero_cwi.port
+    resource = module.aws_database_sombrero_cwi.region
+    username = module.aws_database_sombrero_cwi.access_key_id
+    secure   = true
+  }
+
+  driver                = "bucket/aws-s3"
+  driver_version        = module.aws_database_sombrero_cwi.version
+  insterra_component_id = 69
+  provider_name         = "aws"
+  slug                  = module.aws_database_sombrero_cwi.identifier
 }
