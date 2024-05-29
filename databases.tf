@@ -2,17 +2,22 @@
 
 module "aws_database_sombrero_cwi" {
   source  = "upmaru/instellar/aws//modules/database"
-  version = "0.7.6"
+  version = "0.9.3"
 
-  db_name             = "instellardb"
-  db_size             = "db.t3.small"
-  db_username         = "instellar"
-  deletion_protection = true
-  engine              = "postgres"
-  engine_version      = "15"
-  identifier          = "sombrero-cwi"
-  port                = 5432
-  region              = var.aws_region
+  blueprint                     = var.identifier
+  db_name                       = "instellardb"
+  db_size                       = "db.t3.small"
+  db_username                   = "instellar"
+  deletion_protection           = true
+  engine                        = "postgres"
+  engine_version                = "15"
+  identifier                    = "sombrero-cwi"
+  manage_credential_with_secret = false
+  nodes_iam_roles = [
+
+  ]
+  port   = 5432
+  region = var.aws_region
   security_group_ids = [
     module.aws_compute_sombrero_hjt.nodes_security_group_id,
     module.aws_compute_sombrero_hjt.bastion_security_group_id
