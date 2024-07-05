@@ -2,7 +2,7 @@
 
 module "instellar_link_sombrero_emg" {
   source  = "upmaru/bootstrap/instellar//modules/service"
-  version = "0.6.3"
+  version = "0.8.1"
 
   certificate = module.aws_database_sombrero_cwi.certificate_url
   channels    = ["main", "master", "develop"]
@@ -27,8 +27,9 @@ module "instellar_link_sombrero_emg" {
 
 module "instellar_link_sombrero_scz" {
   source  = "upmaru/bootstrap/instellar"
-  version = "0.6.3"
+  version = "0.8.1"
 
+  balancer              = module.aws_compute_sombrero_hjt.balancer
   bootstrap_node        = module.aws_compute_sombrero_hjt.bootstrap_node
   cluster_address       = module.aws_compute_sombrero_hjt.cluster_address
   cluster_name          = module.aws_compute_sombrero_hjt.identifier
@@ -43,7 +44,7 @@ module "instellar_link_sombrero_scz" {
 
 module "instellar_link_polaris_dux" {
   source  = "upmaru/bootstrap/instellar//modules/service"
-  version = "0.6.3"
+  version = "0.8.1"
 
 
   channels = ["main", "master", "develop"]
@@ -64,4 +65,21 @@ module "instellar_link_polaris_dux" {
   insterra_component_id = 71
   provider_name         = "aws"
   slug                  = module.aws_bucket_polaris_wvy.identifier
+}
+
+module "instellar_link_perseus_ziu" {
+  source  = "upmaru/bootstrap/instellar"
+  version = "0.8.1"
+
+  balancer              = module.aws_compute_perseus_lhb.balancer
+  bootstrap_node        = module.aws_compute_perseus_lhb.bootstrap_node
+  cluster_address       = module.aws_compute_perseus_lhb.cluster_address
+  cluster_name          = module.aws_compute_perseus_lhb.identifier
+  insterra_component_id = 221
+  kit_slug              = "lite"
+  nodes                 = module.aws_compute_perseus_lhb.nodes
+  password_token        = module.aws_compute_perseus_lhb.trust_token
+  provider_name         = "aws"
+  region                = var.aws_region
+
 }
