@@ -20,7 +20,9 @@ module "aws_database_sombrero_cwi" {
   region = var.aws_region
   security_group_ids = [
     module.aws_compute_sombrero_hjt.nodes_security_group_id,
-    module.aws_compute_sombrero_hjt.bastion_security_group_id
+    module.aws_compute_sombrero_hjt.bastion_security_group_id,
+    module.aws_compute_perseus_lhb.nodes_security_group_id,
+    module.aws_compute_perseus_lhb.bastion_security_group_id
   ]
   skip_final_snapshot = false
   subnet_ids          = module.aws_networking_sombrero_kyg.public_subnet_ids
