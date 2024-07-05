@@ -3,8 +3,9 @@
 variable "identifier" {}
 module "aws_networking_sombrero_kyg" {
   source  = "upmaru/instellar/aws//modules/network"
-  version = "0.7.6"
+  version = "0.9.3"
 
+  blueprint           = var.identifier
   identifier          = var.identifier
   public_subnet_cidrs = ["10.1.1.0/24", "10.1.2.0/24", "10.1.3.0/24"]
   region              = var.aws_region
