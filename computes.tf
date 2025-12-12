@@ -2,7 +2,7 @@
 
 module "aws_compute_perseus_lhb" {
   source  = "upmaru/instellar/aws"
-  version = "0.9.3"
+  version = "0.9.8"
 
   balancer                     = false
   balancer_deletion_protection = true

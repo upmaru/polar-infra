@@ -2,8 +2,9 @@
 
 module "aws_database_sombrero_cwi" {
   source  = "upmaru/instellar/aws//modules/database"
-  version = "0.9.3"
+  version = "0.9.8"
 
+  apply_immediately             = false
   blueprint                     = var.identifier
   db_name                       = "instellardb"
   db_size                       = "db.t3.small"
@@ -13,6 +14,8 @@ module "aws_database_sombrero_cwi" {
   engine_version                = "15"
   identifier                    = "sombrero-cwi"
   manage_credential_with_secret = false
+  max_storage_size              = 100
+  multi_az                      = false
   nodes_iam_roles = [
 
   ]
@@ -23,6 +26,7 @@ module "aws_database_sombrero_cwi" {
     module.aws_compute_perseus_lhb.bastion_security_group_id
   ]
   skip_final_snapshot = false
+  storage_size        = 20
   subnet_ids          = module.aws_networking_sombrero_kyg.public_subnet_ids
   vpc_id              = module.aws_networking_sombrero_kyg.vpc_id
 }
