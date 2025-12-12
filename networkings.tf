@@ -3,7 +3,7 @@
 variable "identifier" {}
 module "aws_networking_sombrero_kyg" {
   source  = "upmaru/instellar/aws//modules/network"
-  version = "0.9.3"
+  version = "0.9.8"
 
   blueprint           = var.identifier
   identifier          = var.identifier

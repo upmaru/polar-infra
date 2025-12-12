@@ -2,7 +2,7 @@
 
 module "instellar_link_perseus_ziu" {
   source  = "upmaru/bootstrap/instellar"
-  version = "0.8.1"
+  version = "0.8.3"
 
   balancer              = module.aws_compute_perseus_lhb.balancer
   bootstrap_node        = module.aws_compute_perseus_lhb.bootstrap_node
@@ -19,7 +19,7 @@ module "instellar_link_perseus_ziu" {
 
 module "instellar_link_polaris_dux" {
   source  = "upmaru/bootstrap/instellar//modules/service"
-  version = "0.8.1"
+  version = "0.8.3"
 
 
   channels = ["main", "master", "develop"]
@@ -44,7 +44,7 @@ module "instellar_link_polaris_dux" {
 
 module "instellar_link_sombrero_emg" {
   source  = "upmaru/bootstrap/instellar//modules/service"
-  version = "0.8.1"
+  version = "0.8.3"
 
   certificate = module.aws_database_sombrero_cwi.certificate_url
   channels    = ["main", "master", "develop"]

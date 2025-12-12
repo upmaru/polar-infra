@@ -2,7 +2,7 @@
 
 module "aws_bucket_polaris_wvy" {
   source  = "upmaru/instellar/aws//modules/bucket"
-  version = "0.9.3"
+  version = "0.9.8"
 
   blueprint  = var.identifier
   identifier = "polaris-wvy"
